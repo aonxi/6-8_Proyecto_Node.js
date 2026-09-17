@@ -1,8 +1,8 @@
 {
-  "name": "proyecto-backend-m6",
+  "name": "proyecto-backend-m7",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Proyecto Backend Node & Express - Módulos 6, 7 y 8",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
@@ -13,7 +13,10 @@
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.23.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
