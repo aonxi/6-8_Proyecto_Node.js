@@ -8,9 +8,16 @@ const errorHandler = (error, req, res, next) => {
     // Mostramos el error en la consola para facilitar la depuración.
     console.error('❌ Error:', error.message);
 
-    // Utilizamos el código indicado por el servicio.
-    // Si no existe, usamos 500 como error interno del servidor.
-    const statusCode = error.statusCode || 500;
+    // Por defecto utilizamos el código indicado por el servicio.
+    // Si no existe, utilizamos 500 como error interno del servidor.
+    let statusCode = error.statusCode || 500;
+
+    // Multer utiliza el código LIMIT_FILE_SIZE cuando el archivo
+    // supera el tamaño máximo configurado.
+    if (error.code === 'LIMIT_FILE_SIZE') {
+        statusCode = 400;
+        error.message = 'El archivo supera el tamaño máximo permitido de 5 MB.';
+    }
 
     // Respondemos siempre utilizando el formato JSON de la API.
     res.status(statusCode).json({

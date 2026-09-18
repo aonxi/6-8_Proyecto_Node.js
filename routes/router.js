@@ -23,6 +23,12 @@ const transactionRoutes = require('./transactionRoutes');
 // Importamos las rutas de consultas SQL manuales.
 const sqlRoutes = require('./sqlRoutes');
 
+// Importamos las rutas de autenticación JWT.
+const authRoutes = require('./authRoutes');
+
+// Importamos las rutas de subida de archivos.
+const uploadRoutes = require('./uploadRoutes');
+
 
 // ============================================================
 // RUTAS PRINCIPALES DE M6
@@ -51,6 +57,13 @@ router.use('/transacciones', transactionRoutes);
 // Registramos las rutas de SQL manual.
 router.use('/sql', sqlRoutes);
 
+// Montamos las rutas de autenticación.
+// Esto permite utilizar POST /login.
+router.use('/', authRoutes);
+
+// Montamos la ruta de subida de archivos.
+// Endpoint final: POST /upload
+router.use('/', uploadRoutes);
 
 // ============================================================
 // EXPORTACIÓN

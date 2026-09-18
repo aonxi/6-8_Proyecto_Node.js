@@ -6,6 +6,10 @@
 // utilizando operadores de Sequelize.
 const { Op } = require('sequelize');
 
+// Importamos bcrypt para convertir las contraseñas
+// en hashes seguros antes de guardarlas en PostgreSQL.
+const bcrypt = require('bcrypt');
+
 // Importamos los modelos necesarios desde nuestro archivo central.
 const {
     User,
@@ -109,11 +113,16 @@ const createUser = async ({ nombre, email, password, activo = true }) => {
         throw error;
     }
 
+    // Generamos un hash seguro de la contraseña.
+    // El número 10 corresponde al costo de procesamiento de bcrypt.
+    const passwordHash = await bcrypt.hash(password, 10);
+
     // Creamos el usuario utilizando Sequelize.
+    // Guardamos el hash en lugar de la contraseña original.
     const usuario = await User.create({
         nombre,
         email,
-        password,
+        password: passwordHash,
         activo
     });
 

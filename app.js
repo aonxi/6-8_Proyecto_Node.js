@@ -59,8 +59,15 @@ app.use(errorHandler);
 // ARCHIVOS ESTÁTICOS
 // ============================================================
 
-// Servimos archivos estáticos desde public.
+// Servimos la página web estática desde public.
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Servimos los archivos subidos desde la carpeta uploads.
+// Por ejemplo:
+// /uploads/imagen.png
+// permitirá acceder al archivo guardado en:
+// /uploads/imagen.png
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // ============================================================

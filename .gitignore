@@ -1,3 +1,7 @@
 node_modules/
 .env
 logs/log.txt
+
+# Archivos subidos por los usuarios
+uploads/*
+!uploads/.gitkeep
